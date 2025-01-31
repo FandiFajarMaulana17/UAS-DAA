@@ -1,0 +1,56 @@
+@startuml
+
+class BusRoute {
+    -routeID: String
+    -startLocation: String
+    -endLocation: String
+    -price: double  // Harga tiket antara 500K - 1 juta
+    -busNumber: String
+    -busName: String  // Nama bus
+    -driverName: String  // Nama sopir (Asep, Budi, Eka)
+    +getRouteInfo(): String
+    +getRoutePrice(): double
+    +getDriverName(): String
+    +getBusName(): String  // Metode untuk mendapatkan nama bus
+    +getBusDetails(): String // Detail rute bus
+}
+
+class Payment {
+    -paymentID: String
+    -amount: double
+    -paymentMethod: String
+    -paymentStatus: String
+    +processPayment(): boolean
+    +confirmPayment(): void
+    +getPaymentDetails(): String
+}
+
+class Ticket {
+    -ticketID: String
+    -route: BusRoute
+    -payment: Payment
+    -issueTime: String
+    +getTicketDetails(): String
+    +getTicketPrice(): double
+    +generateTicket(): String
+}
+
+class User {
+    -userID: String
+    -username: String
+    -email: String
+    -phoneNumber: String
+    +login(): void
+    +register(): void
+    +updateProfile(newEmail: String, newPhoneNumber: String): void
+}
+
+User --> Ticket : "Issues"
+Ticket --> BusRoute : "Contains"
+Ticket --> Payment : "Contains"
+BusRoute --> Payment : "Involved in"
+User --> BusRoute : "Selects"
+User --> Payment : "Makes Payment"
+User --> Ticket : "Receives Ticket"
+
+@enduml

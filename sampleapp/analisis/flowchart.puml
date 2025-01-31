@@ -1,0 +1,21 @@
+@startuml
+start
+:User membuka aplikasi;
+:User memasukkan lokasi "Dari" dan "Tujuan";
+:Tampilkan rute bus yang tersedia dengan harga (500K - 1 juta);
+:Tampilkan nama bus, nomor bus, dan nama sopir (Asep, Budi, Eka);
+:User memilih rute berdasarkan nama bus, nomor bus, dan sopir;
+:Tampilkan detail rute (nama bus, nomor bus, sopir);
+:User memilih metode pembayaran (GoPay, Kartu Kredit, dll);
+:User mengonfirmasi pembayaran;
+:Proses pembayaran;
+if (Pembayaran Berhasil?) then (ya)
+    :Pembayaran berhasil;
+    :Buat dan terbitkan tiket dengan detail rute, harga, dan nama sopir;
+    :Tampilkan tiket kepada user;
+else
+    :Tampilkan pesan kegagalan pembayaran;
+    :Beri kesempatan kepada user untuk mencoba lagi;
+endif
+stop
+@enduml
